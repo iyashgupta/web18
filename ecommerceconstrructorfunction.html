@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        form>input,
+        form>select {
+            width: 15%;
+            border: 2px solid black;
+            border-radius: 5px;
+            padding: 5px 0px;
+            font-size: 22px;
+            font-family: sans-serif;
+            margin: 5px 2px
+        }
+    </style>
+</head>
+
+<body>
+
+    <form onsubmit="myfunction(event)">
+        <input type="text" id="name" placeholder="product name">
+        <input type="text" id="category" placeholder="category">
+        <input type="text" id="imgurl" placeholder="enter image url">
+        <input type="text" id="price" placeholder="enter price">
+        <select id="gender" value="">
+            <option value="N-A">N-A</option>
+            <option value="Male">Male</option>
+            <option value="FeMAle">FeMAle</option>
+
+        </select>
+        <select id="sold" value="">
+            <option value="false">false</option>
+            <option value="true">true</option>
+        </select>
+        <input type="submit" value="add the product">
+    </form>
+
+</body>
+
+</html>
+<script>
+   let arr = JSON.parse(localStorage.getItem("mydata")) || []
+    function Productdata(name, category, imageurl, price, gender, sold) {
+
+        this.name = name
+        this.category = category
+        this.imageurl = imageurl
+        this.price = price
+        this.gender = gender
+        this.sold = sold
+
+    }
+ 
+
+    function myfunction(event) {
+        event.preventDefault()
+
+        let form = document.querySelector("form")
+        let name = form.name.value
+        let category = form.category.value
+        let imageurl = form.imgurl.value
+        let price = form.price.value
+        let gender = form.gender.value
+        let sold = form.sold.value
+
+        let data = new Productdata(name, category, imageurl, price, gender, sold)
+        arr.push(data)
+
+        localStorage.setItem("mydata", JSON.stringify(arr))
+        window.location.reload()
+    }
+
+
+</script>

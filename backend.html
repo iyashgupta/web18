@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="yash.css">
+
+</head>
+<body>
+    <div id="navbar">
+        <div><a href="backend.html">backend</a> </div>
+        <div><a href="frontend.html">frontend</a></div>
+    </div>
+    <form id="form">
+        <input type="text" placeholder="enter name" id="name">
+        <input type="url" placeholder="enter logo url" id="logo">
+        <input type="text" placeholder="enter role" id="role">
+        <input type="url" placeholder="enter img name" id="img">
+        <input type="submit">
+    </form>
+</body>
+</html>
+<script>
+let investorsarr=JSON.parse(localStorage.getItem("investors"))||[]
+document.querySelector("#form").addEventListener("submit",myfunction)
+
+function myfunction(){
+event.preventDefault()
+
+let name=form.name.value
+let role=form.role.value
+let logo=form.logo.value
+let img=form.img.value
+
+let object=new investorsdata(name,role,logo,img)
+investorsarr.push(object)
+localStorage.setItem("investors",JSON.stringify(investorsarr))
+window.location.reload()
+}
+function investorsdata(name,role,logo,img){
+    this.name=name
+    this.role=role
+    this.logo=logo
+    this.img=img
+}
+</script>
